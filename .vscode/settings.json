@@ -1,0 +1,10 @@
+{
+  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.diagnosticSeverityOverrides": {
+    "reportGeneralTypeIssues": "warning",
+    "reportUnknownMemberType": "none",
+    "reportUnknownArgumentType": "none",
+    "reportUnknownVariableType": "none"
+  },
+  "editor.defaultFormatter": "ms-python.black-formatter"
+}

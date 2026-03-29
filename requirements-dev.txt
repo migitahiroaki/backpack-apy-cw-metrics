@@ -1,0 +1,13 @@
+# --- Base SDK ---
+boto3
+
+# --- Testing & Mocking ---
+pytest
+# AWSサービスのモック用
+moto[cloudwatch,servicediscovery]
+
+# --- Static Analysis & Typing (IDE補完用) ---
+# CloudWatchとLambdaの型定義を明示的に追加
+boto3-stubs[cloudwatch,lambda]
+# 静的解析ツール
+mypy
