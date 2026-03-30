@@ -1,5 +1,4 @@
-from typing import Any
-
+import json
 import boto3
 import logging
 
@@ -44,7 +43,10 @@ class MetricsClientWrapper:
             )
 
         # CloudWatchにメトリクスデータを送信
+        logger.info(f"送信前のメトリクスデータ {json.dumps(metrics_data, indent=2)}")
         logger.info("CloudWatchにメトリクスを送信します。")
-        return self._client.put_metric_data(
+        response = self._client.put_metric_data(
             Namespace=self._env["metrics_namespace"], MetricData=metrics_data
         )
+        logger.info("メトリクス送信結果: %s", response)
+        return response
