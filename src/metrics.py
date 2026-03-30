@@ -44,6 +44,7 @@ class MetricsClientWrapper:
             )
 
         # CloudWatchにメトリクスデータを送信
+        logger.info("CloudWatchにメトリクスを送信します。")
         return self._client.put_metric_data(
             Namespace=self._env["metrics_namespace"], MetricData=metrics_data
         )
