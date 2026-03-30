@@ -32,11 +32,19 @@ class Env:
         api_url: str = os.environ.get(
             "API_URL", "https://api.backpack.exchange/api/v1/borrowLend/apy"
         )
+        if not api_url.startswith("http") and not api_url.startswith("https"):
+            msg = f"API_URLが不正です。URLはhttpsまたはhttpで始まる必要があります。{api_url=}"
+            logger.error(msg)
+            raise ValueError(msg)
 
         # メトリクス名前空間
         metrics_namespace: str = os.environ.get(
             "CLOUDWATCH_NAMESPACE", "Backpack/Lending"
         )
+        if not metrics_namespace:
+            msg = f"環境変数 'CLOUDWATCH_NAMESPACE' が不正です。{metrics_namespace=}"
+            logger.error(msg)
+            raise ValueError(msg)
 
         self._app_env: AppEnvironment = AppEnvironment(
             borrow_targets=borrow_targets,
